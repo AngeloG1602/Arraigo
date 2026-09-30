@@ -5,7 +5,7 @@ Estado: `pendiente` · `en curso` · `hecho`. Claude Code actualiza la columna a
 | ID | Rebanada | Criterios de aceptación | Estado |
 |----|----------|-------------------------|--------|
 | S1 | Proyecto base | Next.js + TS + Tailwind + ESLint en `src/`; gsap y lenis instalados; skills en `.claude/`; `npm run build` en verde | hecho |
-| C0 | Prototipos de concepto | `/concepto-a` y `/concepto-b` con hero + primera sección, direcciones claramente distintas, sin depender de fotografía, movimiento real con versión reducida; plan de diseño de cada uno escrito en el PR | pendiente |
+| C0 | Prototipos de concepto | `/concepto-a` y `/concepto-b` con hero + primera sección, direcciones claramente distintas, sin depender de fotografía, movimiento real con versión reducida; plan de diseño de cada uno escrito en el PR | hecho |
 | C1 | Fijar concepto | Concepto elegido documentado en `CLAUDE.md`; tokens en `src/styles/tokens.css`; logotipo y favicon en SVG; rutas de concepto eliminadas | pendiente |
 | R0 | Esqueleto | Layout, navegación (con menú móvil accesible), pie, franja de simulación, `noindex` + `robots.txt`, fuentes, Lenis y GSAP configurados con `prefers-reduced-motion`, página 404 propia | pendiente |
 | R1 | Inicio | Hero final con el momento memorable; secciones de `TEXTOS.md` → Inicio; botón de agendar y WhatsApp visibles en la primera pantalla en móvil; LCP ≤ 2,5 s en Lighthouse móvil | pendiente |

@@ -1,0 +1,389 @@
+/* Concepto A · Estratos. Prototipo C0: se elimina o se convierte en tokens en C1. */
+
+.raiz {
+  --caliza: #deddd5;
+  --basalto: #231f1d;
+  --pizarra: #4a4440;
+  --encia: #8e3f48;
+  --encia-hondo: #7a3540;
+  --titanio: #9aa0a4;
+  --ocre: #c9a24e;
+  --cortical: #cfc9bc;
+  --esmalte: #f4f3ef;
+  --niebla: #b9b4ab; /* texto secundario sobre basalto: 7,9:1 */
+  --margen: clamp(1rem, 4vw, 4rem);
+
+  min-height: 100vh;
+  background: var(--caliza);
+  color: var(--basalto);
+  font-family: var(--fuente-archivo), system-ui, sans-serif;
+  font-size: 1.1875rem;
+  line-height: 1.6;
+}
+
+.raiz :focus-visible {
+  outline: 3px solid var(--basalto);
+  outline-offset: 3px;
+}
+
+/* Cabecera y franja de simulación */
+
+.franja {
+  margin: 0;
+  padding: 0.5rem var(--margen);
+  background: var(--cortical);
+  font-size: 1.125rem;
+  line-height: 1.4;
+}
+
+.marca {
+  margin: 0;
+  padding: 1.25rem var(--margen) 0;
+  font-size: 1.75rem;
+  font-weight: 800;
+  font-stretch: 72%;
+  line-height: 1.2;
+}
+
+.descriptor {
+  display: inline-block;
+  margin-left: 0.75rem;
+  font-size: 1.125rem;
+  font-weight: 450;
+  font-stretch: 100%;
+}
+
+/* Hero */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  overflow-x: clip;
+}
+
+.heroTexto {
+  padding: clamp(2.5rem, 7vh, 5rem) var(--margen) 0;
+}
+
+.titular {
+  margin: 0;
+  max-width: 10ch;
+  font-size: clamp(3.75rem, 2rem + 6vw, 7.5rem);
+  font-weight: 820;
+  font-stretch: 66%;
+  line-height: 0.92;
+  letter-spacing: -0.005em;
+  word-spacing: 0.08em;
+}
+
+.bajada {
+  margin: 1.75rem 0 0;
+  max-width: 32em;
+  font-size: clamp(1.1875rem, 1.1rem + 0.3vw, 1.3125rem);
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.botonPrincipal,
+.botonSecundario {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.5rem;
+  padding: 0 1.75rem;
+  border: 2px solid var(--encia);
+  border-radius: 2px;
+  background: var(--encia);
+  color: #fff;
+  font: inherit;
+  font-weight: 650;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 150ms ease-out;
+}
+
+.botonPrincipal:hover {
+  border-color: var(--encia-hondo);
+  background: var(--encia-hondo);
+}
+
+.botonSecundario {
+  border-color: var(--basalto);
+  background: transparent;
+  color: var(--basalto);
+}
+
+.botonSecundario:hover {
+  background: var(--cortical);
+}
+
+/* Firma «Asentar»: el botón se hunde al presionarlo. */
+.botonPrincipal:active,
+.botonSecundario:active {
+  transform: translateY(2px);
+}
+
+.nota {
+  margin: 1.25rem 0 0;
+  max-width: 34em;
+  color: var(--pizarra);
+  font-size: 1.125rem;
+}
+
+/* Corte del maxilar */
+
+/* En móvil el corte se agranda y se sale por los lados: los estratos siguen, el diente crece. */
+.corte {
+  position: relative;
+  width: 120%;
+  margin-top: 2rem;
+  margin-bottom: -1px;
+  margin-left: -10%;
+}
+
+.corteSvg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.rotulos {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rotulos li {
+  position: absolute;
+  left: calc(var(--rotulo-x) + 0.25rem);
+  padding: 0.125rem 0.625rem;
+  background: var(--caliza);
+  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.1875rem);
+  font-weight: 650;
+  font-stretch: 85%;
+  line-height: 1.3;
+  white-space: nowrap;
+  translate: 0 -50%;
+}
+
+/* Las piezas esperan al JS solo si hay JS y movimiento; si el JS no llega, aparecen solas. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .pieza {
+    opacity: 0;
+  }
+
+  .corte:not([data-mov]) .pieza {
+    animation: aparecer 0.3s 4s forwards;
+  }
+}
+
+@keyframes aparecer {
+  to {
+    opacity: 1;
+  }
+}
+
+/* El plan escrito: bajo tierra, sobre basalto */
+
+.plan {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 3rem;
+  padding: clamp(3.5rem, 9vw, 7.5rem) var(--margen);
+  background: var(--basalto);
+  color: var(--caliza);
+}
+
+.plan :focus-visible {
+  outline-color: var(--caliza);
+}
+
+.planTexto p {
+  margin: 1.5rem 0 0;
+  max-width: 30em;
+}
+
+.planTitular {
+  margin: 0;
+  max-width: 14ch;
+  font-size: clamp(2.25rem, 1.4rem + 3.2vw, 4.25rem);
+  font-weight: 780;
+  font-stretch: 72%;
+  line-height: 1;
+  word-spacing: 0.06em;
+}
+
+.testigo {
+  margin: 0;
+}
+
+.fases {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fase {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 1.5rem;
+  min-height: 7rem;
+}
+
+/* Cicatrización es la fase más larga: su capa también lo es. */
+.fase[data-fase="3"] {
+  min-height: 12rem;
+}
+
+.nucleo {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+  font-size: 2.25rem;
+  font-weight: 820;
+  font-stretch: 66%;
+  line-height: 1;
+  color: var(--basalto);
+}
+
+.fase[data-fase="1"] .nucleo {
+  background: var(--cortical);
+}
+
+.fase[data-fase="2"] .nucleo {
+  background: var(--encia);
+  color: #fff;
+}
+
+.fase[data-fase="3"] .nucleo {
+  background-color: var(--ocre);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='40'%3E%3Cg fill='%23B38C3E'%3E%3Cellipse cx='12' cy='10' rx='7' ry='4.5'/%3E%3Cellipse cx='36' cy='16' rx='5' ry='6'/%3E%3Cellipse cx='22' cy='31' rx='8' ry='4'/%3E%3Cellipse cx='44' cy='36' rx='3.5' ry='3'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.fase[data-fase="4"] .nucleo {
+  background: var(--esmalte);
+}
+
+.fase[data-fase="5"] .nucleo {
+  background: var(--titanio);
+}
+
+.faseCuerpo {
+  padding: 1rem 0 1.5rem;
+}
+
+.faseNombre {
+  margin: 0;
+  font-size: 1.3125rem;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.faseDuracion {
+  margin: 0.25rem 0 0;
+  color: var(--niebla);
+}
+
+.fasePago {
+  margin: 0.25rem 0 0;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+.total {
+  margin: 2rem 0 0;
+  font-size: 1.5rem;
+  font-weight: 750;
+  font-stretch: 85%;
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+}
+
+.planNota {
+  margin-top: 0.5rem;
+  color: var(--niebla);
+}
+
+/* Ventana de demostración de WhatsApp */
+
+.ventana {
+  max-width: min(32rem, calc(100vw - 2rem));
+  padding: 2rem;
+  border: 2px solid var(--basalto);
+  border-radius: 2px;
+  background: var(--caliza);
+  color: var(--basalto);
+  font-family: var(--fuente-archivo), system-ui, sans-serif;
+  font-size: 1.1875rem;
+  line-height: 1.6;
+}
+
+.ventana p {
+  margin: 0;
+}
+
+.ventana::backdrop {
+  background: rgb(35 31 29 / 0.6);
+}
+
+.ventanaMensaje {
+  margin: 1rem 0 1.5rem;
+  padding-left: 1rem;
+  border-left: 4px solid var(--encia);
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ventana[open] {
+    animation: asentarVentana 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+}
+
+@keyframes asentarVentana {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+}
+
+@media (max-width: 30rem) {
+  .descriptor {
+    display: block;
+    margin-left: 0;
+  }
+
+  .acciones > * {
+    flex: 1 1 100%;
+  }
+}
+
+@media (min-width: 60rem) {
+  .hero {
+    grid-template-columns: minmax(0, 6fr) minmax(0, 7fr);
+    align-items: end;
+    min-height: calc(100svh - 7.5rem);
+  }
+
+  .heroTexto {
+    align-self: center;
+    padding-bottom: 4rem;
+  }
+
+  .corte {
+    width: auto;
+    margin-top: 0;
+    margin-left: 0;
+  }
+
+  .plan {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 4rem;
+    align-items: start;
+  }
+}
